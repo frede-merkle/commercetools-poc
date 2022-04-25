@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+mainClassName = "HelloApi"
+
+ext {
+    versions = [
+            commercetools: "8.6.0"
+    ]
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.commercetools.sdk:commercetools-http-client:${versions.commercetools}"
+    implementation "com.commercetools.sdk:commercetools-sdk-java-api:${versions.commercetools}"
+    implementation "com.commercetools.sdk:commercetools-sdk-java-importapi:${versions.commercetools}"
+    implementation "com.commercetools.sdk:commercetools-sdk-java-ml:${versions.commercetools}"
+}

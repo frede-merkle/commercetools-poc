@@ -1,10 +1,10 @@
 class TypeUpdatesTest extends BaseTest {
 
     def "Get customProduct type"() {
-        when: "getting "
+        when: "getting main ProductType"
         def response = restClient.productTypes().withKey("main").get().executeBlocking().body
 
-        then: "the result contains the correct name and default values"
+        then: "it has the new customProduct field"
         with(response) {
             attributes.find { att -> att.name.equals("customProduct") }.println(response)
         }

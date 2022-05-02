@@ -6,7 +6,8 @@ class TypeUpdatesTest extends BaseTest {
 
         then: "it has the new customProduct field"
         with(response) {
-            attributes.find { att -> att.name.equals("customProduct") }.println(response)
+            attributes.size() > 21 //Default number of attributes is 21
+            attributes.find { att -> (att.name == "customProduct") }.println(response)
         }
     }
 }

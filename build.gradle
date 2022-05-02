@@ -1,6 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'application'
-
+apply plugin: 'groovy'
 sourceCompatibility = 1.8
 
 mainClassName = "HelloApi"
@@ -20,4 +20,20 @@ dependencies {
     implementation "com.commercetools.sdk:commercetools-sdk-java-api:${versions.commercetools}"
     implementation "com.commercetools.sdk:commercetools-sdk-java-importapi:${versions.commercetools}"
     implementation "com.commercetools.sdk:commercetools-sdk-java-ml:${versions.commercetools}"
+
+    testImplementation 'org.opentest4j:opentest4j:1.2.0'
+    testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.10'
+}
+
+test {
+    useJUnitPlatform()
+
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            if (result.testCount == 0) {
+                throw new IllegalStateException("No tests were found. Failing the build")
+            }
+        }
+    }
 }
